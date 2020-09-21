@@ -24,6 +24,7 @@ searchUser.addEventListener('keyup', (e) =>{
             // show the profile
             // will be added with innerHTML template literal
             ui.showProfile(data.profile);
+            ui.showRepos(data.repos);
            }
         });
     } else {

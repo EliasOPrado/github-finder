@@ -2,7 +2,7 @@ class GitHub {
     constructor() {
       this.config = {
         headers: {
-          Authorization: 'd1bb575fb932aaa027d9322acb2178deab3ac4c7'
+          Authorization: 'ADD_YOUR_GITHUB_TOKEN_HERE'
         }
       }
       this.repos_count = 5
@@ -12,7 +12,8 @@ class GitHub {
       const profileResponse = await fetch(
         `https://api.github.com/users/${user}`,
         this.config
-      )
+      );
+
    
       const repoResponse = await fetch(
         `https://api.github.com/users/${user}/repos?per_page=${this.repos_count}&sort=${this.repos_sort}`,

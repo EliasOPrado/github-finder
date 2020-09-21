@@ -30,6 +30,33 @@ class UI {
        <div id="repos"></div>
        `;
     }
+
+    // show user repos
+    showRepos(repos){
+        let output = '';
+
+        repos.forEach((repo) => {
+            output += `
+              <div class="card card-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <a href="${repo.html_url}" target="_blank">${repo.name}</a>
+                    </div>
+                    <div class="col-md-6">
+                        <span class="badge badge-primary">Public Stars:${repo.stargazers_count}</span>
+                        <span class="badge badge-secondary">Watchers:${repo.watchers_count}</span>
+                        <span class="badge badge-success">Followers:${repo.forks_count}</span>
+                    </div>
+                </div>
+              </div>
+            `;
+        });
+
+        // output the repositories
+        document.getElementById('repos').innerHTML = output;
+    }
+
+
     // remove profile when name is removed from form
     clearProfile(){
         this.profile.innerHTML = '';
@@ -37,6 +64,9 @@ class UI {
 
     // show alert when user not found
     showAlert(message, className){
+        // clear any remaining alerts
+        this.clearAlert();
+
         // create div
         const div = document.createElement('div');
         // add classes
@@ -50,5 +80,15 @@ class UI {
         // insert alert
         container.insertBefore(div, search);
 
+        setTimeout(() => {
+            this.clearAlert();
+        }, 3000);
+    }
+
+    clearAlert(){
+        const currentAlert = document.querySelector('.alert');
+        if(currentAlert){
+            currentAlert.remove();
+        }
     }
 }
